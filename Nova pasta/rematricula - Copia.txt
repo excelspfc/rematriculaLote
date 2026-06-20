@@ -1,0 +1,58 @@
+﻿import requests
+from datetime import date
+from geraToken import geraTokenDinamico
+
+def rematricula(marca, tokenDinamico, matriculasProntas):
+    
+    dataAtual = date.today().strftime("%Y-%m-%d")
+    
+    if marca == "portalufbra":
+        
+        idPlanoPagamento = 3120
+    
+    else:
+        
+        idPlanoPagamento = 2642
+
+    for rematricula in matriculasProntas:
+    
+        tokenDinamico = geraTokenDinamico(marca)
+
+        dataMatricula = dataAtual
+        
+        dataPrimeiraParcela = "2999-12-31"
+        
+        idAlunoCursoIngresso = rematricula[0]
+        
+        idPeriodoLetivoDestino = rematricula[1]
+        
+        idTurmaDestino = rematricula[2]
+        
+        listaDisciplinas = rematricula[3]
+        
+        url = f"https://{marca}-developer.jacad.com.br/api/v1/academico/matriculas"
+        
+        payload = {
+            "dataMatricula": dataMatricula,
+            "dataPrimeiraParcela": dataPrimeiraParcela,
+            "idAlunoCursoIngresso": idAlunoCursoIngresso,
+            "idPeriodoLetivo": idPeriodoLetivoDestino,
+            "idTurma": idTurmaDestino,
+            "idsDisciplinasProfessor": listaDisciplinas,
+            "idPlanoPagamento": idPlanoPagamento
+        }
+        
+        headers = {
+            'Authorization': f"Bearer {tokenDinamico}",
+            'Content-Type': 'application/json'
+        }
+        
+        response = requests.post(url, json=payload, headers=headers)
+        
+        if response.status_code == 201:
+            
+            print(f"Rematrícula realizada com sucesso para o aluno {idAlunoCursoIngresso}.")
+            
+        else:
+            
+            print(f"Falha na rematrícula para o aluno {idAlunoCursoIngresso}. Status code: {response.status_code}, Response: {response.text}")
