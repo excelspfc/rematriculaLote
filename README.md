@@ -28,7 +28,7 @@ O sistema foi desenvolvido de forma modular para realizar o ciclo completo de re
 *   Biblioteca `requests`
 
 ### Instalação
-```bash
+
 pip install requests
 Configuração de Segurança
 O arquivo geraToken.py utiliza um cabeçalho fixo para obter o token dinâmico
