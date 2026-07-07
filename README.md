@@ -30,13 +30,21 @@ O sistema foi desenvolvido de forma modular para realizar o ciclo completo de re
 ### Instalação
 ```bash
 pip install requests
+
 Configuração de Segurança
+
 O arquivo geraToken.py utiliza um cabeçalho fixo para obter o token dinâmico
+
 . Recomendação: Em ambiente de produção, utilize variáveis de ambiente para proteger essas credenciais.
+
 Execução
+
 Inicie o processo pelo arquivo principal:
+
 python main.py
+
 ⚙️ Regras de Negócio Implementadas
+
 Status de Aluno: Apenas alunos com matrículas "vivas" são processados
 .
 Paginação: O sistema lida com grandes volumes de dados usando pageSize=500 e navegação por páginas nas consultas à API
