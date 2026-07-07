@@ -9,8 +9,6 @@ def consultaDisciplinasTurma(marca, tokenDinamico, listaMatriculasDestino):
     i = 0
 
     for matricula in listaMatriculasDestino:
-        
-        i += 1
 
         idAlunoCursoIngresso = matricula[0]
         
@@ -43,5 +41,7 @@ def consultaDisciplinasTurma(marca, tokenDinamico, listaMatriculasDestino):
             disciplinasAgrupadas[chave].append(idDisciplinaProfessor)
             
         matriculasProntas.append((idAlunoCursoIngresso, idPeriodoLetivoDestino, idTurmaDestino, disciplinasAgrupadas[chave]))
+        
+        i += 1
 
     return matriculasProntas
